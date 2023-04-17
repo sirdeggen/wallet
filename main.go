@@ -23,7 +23,7 @@ func main() {
 		if err != nil {
 			return e.Logger.Fatal(err)
 		}
-		return c.Json(http.StatusOK, res)
+		return c.String(http.StatusOK, res)
 	})
 	e.Logger.Fatal(e.Start(":80"))
 }
