@@ -1,7 +1,29 @@
 package main
 
-import "fmt"
+import (
+	"net/http"
+	"encoding/json"
+	
+	"github.com/labstack/echo/v4"
+)
+
+type JSONresponse struct {
+	Nug string
+	Gus int 
+}
 
 func main() {
-    fmt.Print('hullo?')
+	e := echo.New()
+	e.GET("/", func(c echo.Context) error {
+		data := &JSONresponse{
+			Nug: "hello",
+			Gus: 1234,
+		}
+		res, err := json.Marshall(data)
+		if err != nil {
+			return e.Logger.Fatal(err)
+		}
+		return c.Json(http.StatusOK, res)
+	})
+	e.Logger.Fatal(e.Start(":80"))
 }
