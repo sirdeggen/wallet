@@ -7,7 +7,7 @@ import (
 )
 
 type Account struct {
-	Name string `json="name"`
+	Name string `json:"name"`
 }
 
 type HomeResponse struct {
@@ -15,7 +15,7 @@ type HomeResponse struct {
 }
 
 type AccountsResponse struct {
-	Accounts []*Account
+	Accounts []*Account `json:"accounts"`
 }
 
 func home(c echo.Context) error {
