@@ -26,8 +26,11 @@ func home(c echo.Context) error {
 }
 
 func accounts(c echo.Context) error {
-	data := make(AccountsResponse, 0)
-	data = data.append(&Account{"deggen"})
+	accounts := make([]*Account, 0)
+	accounts = accounts.append(&Account{"deggen"})
+	data := &AccountsResponse{
+		Accounts: accounts,
+	}
 	return c.JSON(http.StatusOK, data)
 }
 
