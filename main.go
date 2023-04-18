@@ -7,7 +7,7 @@ import (
 )
 
 type Account struct {
-	name string
+	Name string `json="name"`
 }
 
 type HomeResponse struct {
@@ -26,10 +26,8 @@ func home(c echo.Context) error {
 }
 
 func accounts(c echo.Context) error {
-	accounts := make([]*Account, 0)
-	accounts = accounts.append(&Account{"deggen"})
 	data := &AccountsResponse{
-		Accounts: accounts,
+		Accounts: []*Account{&Account{Name: "deggen"}},
 	}
 	return c.JSON(http.StatusOK, data)
 }
